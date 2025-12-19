@@ -1,4 +1,4 @@
-### Ongoing Project
+### Ongoing Project & Learning
 
 # 🦟 Malaria Surveillance Dashboard
 
