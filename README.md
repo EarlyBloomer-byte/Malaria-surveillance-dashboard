@@ -1,4 +1,5 @@
 ### Ongoing Project & Learning
+I'm still using dummy data for now
 
 # 🦟 Malaria Surveillance Dashboard
 
