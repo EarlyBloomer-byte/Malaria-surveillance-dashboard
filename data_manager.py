@@ -6,7 +6,7 @@ import datetime
 def generate_dummy_data():
     """Generates synthetic malaria data for demonstration."""
     regions = ['North', 'South', 'East', 'West', 'Central']
-    dates = pd.date_range(start='2023-01-01', periods=12, freq='M')
+    dates = pd.date_range(start='2023-01-01', end='2025-12-31', freq='M')
     
     data = []
     
