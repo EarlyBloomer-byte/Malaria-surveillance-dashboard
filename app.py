@@ -6,7 +6,7 @@ from visuals import plot_trend_chart, plot_map, plot_donut_chart
 
 # --- Page Configuration ---
 st.set_page_config(
-    page_title="Malaria Surveillance Dashboard",
+    page_title="Malaria Surveillance and Monitoring Dashboard",
     page_icon="🦟",
     layout="wide"
 )
