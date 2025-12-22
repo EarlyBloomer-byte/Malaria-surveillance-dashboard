@@ -15,7 +15,7 @@ st.set_page_config(
 st.markdown("""
 <style>
     .metric-card {
-        background-color: #f0f2f6;
+        background-color: #f0ff2f6;
         border-radius: 10px;
         padding: 20px;
         text-align: center;
@@ -26,7 +26,7 @@ st.markdown("""
     .risk-high { color: #e74c3c; }
     .risk-mod { color: #f39c12; }
 </style>
-""", unsafe_allow_html=True)
+""", unsafe_allow_html=True) #f0ff2f6 f0f2f6
 
 # --- Sidebar: Filters ---
 with st.sidebar:
