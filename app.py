@@ -1,7 +1,7 @@
 # app.py
 import streamlit as st
 import pandas as pd
-from data_manager import generate_dummy_data, get_kpi_metrics
+from data_manager import generate_dummy_data, get_kpi_metrics, fetch_malaria_news
 from visuals import plot_trend_chart, plot_map, plot_donut_chart
 
 # --- Page Configuration ---
@@ -15,9 +15,9 @@ st.set_page_config(
 st.markdown("""
 <style>
     .metric-card {
-        background-color: #f0ff2f6;
-        border-radius: 10px;
-        padding: 20px;
+        background-color: #FFFFFF;
+        border-radius: 15px;
+        padding: 30px;
         text-align: center;
         box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
     }
@@ -43,6 +43,23 @@ with st.sidebar:
     # Region Filter
     all_regions = ["All"] + list(raw_df['Region'].unique())
     selected_region = st.selectbox("Select Region", all_regions)
+
+# --- NEW: CSS for News Cards ---
+st.markdown("""
+<style>
+    .news-card {
+        background-color: #ffffff;
+        border-left: 5px solid #e74c3c;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+    .news-date { font-size: 12px; color: #888; }
+    .news-title { font-weight: bold; font-size: 16px; margin: 5px 0; color: #1f77b4; }
+    .news-summary { font-size: 14px; color: #333; }
+</style>
+""", unsafe_allow_html=True)
 
 # --- Data Filtering Logic ---
 df_filtered = raw_df[raw_df['Date'].dt.year == selected_year]
@@ -92,3 +109,27 @@ st.plotly_chart(plot_trend_chart(df_filtered), use_container_width=True)
 # 4. Raw Data Expander
 with st.expander("View Raw Data"):
     st.dataframe(df_filtered)
+
+# ---------------------------------------------------------
+# NEW SECTION: Recent News & Updates
+# ---------------------------------------------------------
+st.divider()
+st.subheader("📰 Latest Intelligence & Field Updates")
+
+news_data = fetch_malaria_news(selected_region)
+
+# Display news in a 3-column grid
+cols = st.columns(3)
+for i, item in enumerate(news_data):
+    with cols[i % 3]:
+        st.markdown(f"""
+        <div class="news-card">
+            <div class="news-date">{item['date']} | {item['source']}</div>
+            <div class="news-title">{item['title']}</div>
+            <div class="news-summary">{item['summary']}</div>
+            <a href="{item['link']}" target="_blank" style="font-size: 12px; color: #e74c3c;">Read Full Article →</a>
+        </div>
+        """, unsafe_allow_html=True)
+
+if not news_data:
+    st.info(f"No specific recent updates found for the {selected_region} region.")
