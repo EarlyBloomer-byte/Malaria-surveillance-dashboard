@@ -37,10 +37,10 @@ def plot_donut_chart(df):
     labels = ['Recoveries', 'Deaths']
     values = [total_recoveries, total_deaths]
     
-    fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.6)])
+    fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.40)]) # .6 , 300
     fig.update_layout(
         title="Outcome Distribution", 
-        height=300,
+        height=290,
         margin=dict(l=20, r=20, t=40, b=20)
     )
     return fig
