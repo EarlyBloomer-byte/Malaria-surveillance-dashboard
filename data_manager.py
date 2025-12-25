@@ -6,7 +6,7 @@ import datetime
 def generate_dummy_data():
     """Generates synthetic malaria data for demonstration."""
     regions = ['North', 'South', 'East', 'West', 'Central']
-    dates = pd.date_range(start='2023-01-01', end='2025-12-31', freq='M')
+    dates = pd.date_range(start='2020-01-01', end='2025-12-31', freq='M')
     
     data = []
     
@@ -78,7 +78,7 @@ def fetch_malaria_news(region="All"):
     
     # Simple filtering logic for the demonstration
     if region != "All":
-        # In a real API call, you would pass the region as a search parameter
+        # In a real API call, I would pass the region as a search parameter
         return [item for item in news_items if region.lower() in item['summary'].lower()]
         
     return news_items
