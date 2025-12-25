@@ -1,5 +1,6 @@
 # visuals.py
 import plotly.express as px
+import plotly.io as pio
 import plotly.graph_objects as go
 
 def plot_trend_chart(df):
@@ -8,7 +9,7 @@ def plot_trend_chart(df):
         df, x='Date', y='Cases', color='Region',
         title='Malaria Incidence Trends',
         markers=True,
-        template="plotly_white"
+        template="presentation"
     )
     fig.update_layout(height=350, margin=dict(l=20, r=20, t=40, b=20))
     return fig
