@@ -1,6 +1,7 @@
 # data_manager.py
 import pandas as pd
 import numpy as np
+import requests
 import datetime
 
 def generate_dummy_data():
@@ -47,38 +48,19 @@ def get_kpi_metrics(df):
     return total_cases, total_recoveries, avg_prevalence, risk_level
 
 def fetch_malaria_news(region="All"):
-    """
-    Fetches latest malaria updates .
-    I plan to connect with an API after connecting with this
-    """
-    # Real-world data based on Dec 2025 reports
-    news_items = [
-        {
-            "date": "Dec 04, 2025",
-            "title": "WHO Releases World Malaria Report 2025",
-            "summary": "The 2025 report highlights a slight increase in global cases to 282 million, emphasizing the growing threat of drug resistance.",
-            "source": "World Health Organization",
-            "link": "https://www.who.int/news-room/fact-sheets/detail/malaria"
-        },
-        {
-            "date": "Nov 15, 2025",
-            "title": "Breakthrough in Non-Artemisinin Treatments",
-            "summary": "Phase 3 trials for GanLum show positive results, offering a potential new tool against artemisinin-resistant parasites.",
-            "source": "Medicines for Malaria Venture",
-            "link": "https://www.mmv.org/newsroom"
-        },
-        {
-            "date": "Oct 24, 2025",
-            "title": "New Vaccine Rollout in Central Africa",
-            "summary": "Targeted vaccination campaigns reach 1 million children in high-transmission zones this quarter.",
-            "source": "Global Fund Updates",
-            "link": "https://www.theglobalfund.org/"
-        }
-    ]
+    api_key = "f2f2d25025ce429ba7ebe1f62b5853b6"
+    query = f"malaria AND {region}" if region != "All" else "malaria disease"
+    url = f"https://newsapi.org/v2/everything?q={query}&sortBy=publishedAt&apiKey={api_key}"
     
-    # Simple filtering logic for the demonstration
-    if region != "All":
-        # In a real API call, I would pass the region as a search parameter
-        return [item for item in news_items if region.lower() in item['summary'].lower()]
-        
-    return news_items
+    response = requests.get(url)
+    if response.status_code == 200:
+        articles = response.json().get('articles', [])
+        # Transform API results into your dashboard format
+        return [{
+            "date": a['publishedAt'][:10],
+            "title": a['title'],
+            "summary": a['description'],
+            "source": a['source']['name'],
+            "link": a['url']
+        } for a in articles[:3]] # Take the top 3
+    return []
