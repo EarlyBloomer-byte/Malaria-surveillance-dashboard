@@ -48,7 +48,7 @@ with st.sidebar:
 st.markdown("""
 <style>
     .news-card {
-        background-color: #000000;
+        background-color: #ffffff;
         border-left: 5px solid #e74c3c;
         padding: 15px;
         margin-bottom: 10px;
