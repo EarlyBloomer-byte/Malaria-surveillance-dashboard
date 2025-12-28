@@ -118,7 +118,7 @@ st.subheader("📰 Latest Intelligence & Field Updates")
 
 news_data = fetch_malaria_news(selected_region)
 
-# Display news in a 3-column grid
+# Display news in a 4-column grid
 cols = st.columns(3)
 for i, item in enumerate(news_data):
     with cols[i % 3]:
