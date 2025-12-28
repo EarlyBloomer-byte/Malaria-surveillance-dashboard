@@ -62,5 +62,5 @@ def fetch_malaria_news(region="All"):
             "summary": a['description'],
             "source": a['source']['name'],
             "link": a['url']
-        } for a in articles[:3]] # Take the top 3
+        } for a in articles[:6]] # Take the top 6
     return []
