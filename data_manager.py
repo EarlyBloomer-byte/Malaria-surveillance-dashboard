@@ -5,7 +5,7 @@ import requests
 import datetime
 
 def generate_dummy_data():
-    """Generates synthetic malaria data for demonstration."""
+    """For now, I will be using synthetic malaria data for demonstration."""
     regions = ['North', 'South', 'East', 'West', 'Central']
     dates = pd.date_range(start='2020-01-01', end='2025-12-31', freq='M')
     
@@ -55,12 +55,12 @@ def fetch_malaria_news(region="All"):
     response = requests.get(url)
     if response.status_code == 200:
         articles = response.json().get('articles', [])
-        # Transform API results into your dashboard format
+        # Transform API results into my dashboard format
         return [{
             "date": a['publishedAt'][:10],
             "title": a['title'],
             "summary": a['description'],
             "source": a['source']['name'],
             "link": a['url']
-        } for a in articles[:6]] # Take the top 6
+        } for a in articles[:3]]
     return []

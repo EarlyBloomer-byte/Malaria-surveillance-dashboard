@@ -1,6 +1,5 @@
 # app.py
 import streamlit as st
-import pandas as pd
 from data_manager import generate_dummy_data, get_kpi_metrics, fetch_malaria_news
 from visuals import plot_trend_chart, plot_map, plot_donut_chart
 
