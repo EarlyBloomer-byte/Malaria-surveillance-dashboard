@@ -49,7 +49,7 @@ def plot_donut_chart(df):
 
 def plot_animated_map(df):
     """Creates a geospatial time-lapse of malaria cases."""
-    # We need a string version of the date for the slider labels
+    # string version of the date for the slider labels...
     df_map = df.copy()
     df_map['Month'] = df_map['Date'].dt.strftime('%b %Y')
     df_map = df_map.sort_values('Date')
