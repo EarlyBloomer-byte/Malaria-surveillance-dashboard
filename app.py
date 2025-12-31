@@ -73,7 +73,7 @@ with tab_analytics:
     pivot = df_filtered.pivot_table(index='Region', values=['Cases', 'Deaths'], aggfunc='sum')
     st.dataframe(pivot, use_container_width=True)
 
-# --- TAB 3: NEWS & UPDATES ---
+# --- TAB 4: NEWS & UPDATES ---
 with tab_news:
     st.subheader("Latest Field Reports & Global Health News")
     news_data = fetch_malaria_news(selected_region)
@@ -92,7 +92,7 @@ if not news_data:
     st.info(f"No specific recent updates found for the {selected_region} region.")
 
 
-# --- TAB 4: ANIMATIONS ---
+# --- TAB 3: ANIMATIONS ---
 with tab_animations:
     st.subheader("Temporal Disease Dynamics")
     st.markdown("Press **Play** to visualize how malaria cases spread and shift over the year.")
