@@ -1,6 +1,6 @@
 import streamlit as st
 from data_manager import generate_dummy_data, get_kpi_metrics, fetch_malaria_news
-from visuals import plot_trend_chart, plot_map, plot_donut_chart
+from visuals import plot_trend_chart, plot_map, plot_donut_chart, plot_animated_map, plot_animated_bar_race
 
 # --- Page Configuration ---
 st.set_page_config(page_title="Malaria Surveillance & Monitoring Dashboard", page_icon="🦟", layout="wide")
@@ -35,9 +35,10 @@ st.title("🦟 Malaria Surveillance & Intelligence Portal")
 st.caption(f"Showing data for: **{selected_region} Region** | Year: **{selected_year}**")
 
 # --- 3. Dashboard Tabs ---
-tab_overview, tab_analytics, tab_news = st.tabs([
+tab_overview, tab_analytics, tab_animations, tab_news = st.tabs([
     "📍 Surveillance Overview", 
-    "📊 Trends & Analytics", 
+    "📊 Trends & Analytics",
+    "📽️ Time-Lapse", 
     "📰 Intelligence & News"
 ])
 
@@ -89,3 +90,19 @@ with tab_news:
 
 if not news_data:
     st.info(f"No specific recent updates found for the {selected_region} region.")
+
+
+# --- TAB 4: ANIMATIONS ---
+with tab_animations:
+    st.subheader("Temporal Disease Dynamics")
+    st.markdown("Press **Play** to visualize how malaria cases spread and shift over the year.")
+    
+    # Map Animation
+    st.plotly_chart(plot_animated_map(df_filtered), use_container_width=True)
+    
+    st.divider()
+    
+    # Bar Animation
+    st.subheader("Regional Ranking Race")
+    st.markdown("Observe which regions experience spikes in different months.")
+    st.plotly_chart(plot_animated_bar_race(df_filtered), use_container_width=True)
