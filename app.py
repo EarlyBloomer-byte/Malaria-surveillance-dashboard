@@ -1,3 +1,4 @@
+# app.py
 import streamlit as st
 from data_manager import generate_dummy_data, get_kpi_metrics, fetch_malaria_news
 from visuals import plot_trend_chart, plot_map, plot_donut_chart, plot_animated_map, plot_animated_bar_race
@@ -52,7 +53,7 @@ with tab_overview:
     c3.metric("Avg Prevalence", f"{prevalence:.1f}%")
     c4.metric("Risk Level", risk)
 
-    st.write("---")
+    st.write("------")
     
     # Map and Distribution
     col_map, col_pie = st.columns([2, 1])
