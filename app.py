@@ -2,6 +2,7 @@
 import streamlit as st
 from data_manager import generate_dummy_data, get_kpi_metrics, fetch_malaria_news
 from visuals import plot_trend_chart, plot_map, plot_donut_chart, plot_animated_map, plot_animated_bar_race
+from report_generator import generate_malaria_pdf
 
 # --- Page Configuration ---
 st.set_page_config(page_title="Malaria Surveillance & Monitoring Dashboard", page_icon="🦟", layout="wide")
