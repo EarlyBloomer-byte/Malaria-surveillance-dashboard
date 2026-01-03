@@ -123,7 +123,7 @@ if st.sidebar.button("🛠️ Generate Final Report"):
             ("Regional Risk Status", risk)
         ]
         
-        # 2. Prepare static charts (Ensure these functions return a fig)
+        # 2. Prepare static charts ( this is to nsure these functions return a fig)
         chart_dict = {
             "Case Trends": plot_trend_chart(df_filtered),
             "Geographic Map": plot_map(df_filtered)
