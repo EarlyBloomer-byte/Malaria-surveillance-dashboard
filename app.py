@@ -110,14 +110,36 @@ with tab_animations:
     st.plotly_chart(plot_animated_bar_race(df_filtered), use_container_width=True)
 
 
-"""if st.button("🚀 Prepare PDF Report"):
-    with st.spinner("Generating..."):
+st.sidebar.markdown("---")
+st.sidebar.subheader("📤 Export Center")
+
+if st.sidebar.button("🛠️ Generate Final Report"):
+    with st.spinner("Compiling data and charts..."):
+        # 1. Prepare KPIs
         cases, recoveries, prevalence, risk = get_kpi_metrics(df_filtered)
-        kpi_list = [("Cases", cases), ("Risk", risk)] # etc...
-        charts_to_export = {"Trend": plot_trend_chart(df_filtered)}
+        kpi_data = [
+            ("Total Cases", f"{cases:,}"),
+            ("Avg Prevalence", f"{prevalence:.1f}%"),
+            ("Regional Risk Status", risk)
+        ]
         
-        # 2. Pass them INTO the function here:
-        pdf_bytes = generate_malaria_pdf(df_filtered, kpi_list, charts_to_export)
+        # 2. Prepare static charts (Ensure these functions return a fig)
+        chart_dict = {
+            "Case Trends": plot_trend_chart(df_filtered),
+            "Geographic Map": plot_map(df_filtered)
+        }
         
-        st.download_button("Download", data=pdf_bytes, file_name="report.pdf")
-        """
+        # 3. Call generator
+        try:
+            final_pdf = generate_malaria_pdf(df_filtered, kpi_data, chart_dict)
+            
+            # 4. Display download button
+            st.sidebar.success("✅ Report Ready!")
+            st.sidebar.download_button(
+                label="📥 Download PDF",
+                data=final_pdf,
+                file_name=f"Malaria_Surveillance_{selected_year}.pdf",
+                mime="application/pdf"
+            )
+        except Exception as e:
+            st.sidebar.error(f"Error generating report: {e}")
