@@ -108,3 +108,16 @@ with tab_animations:
     st.subheader("Regional Ranking Race")
     st.markdown("Observe which regions experience spikes in different months.")
     st.plotly_chart(plot_animated_bar_race(df_filtered), use_container_width=True)
+
+
+"""if st.button("🚀 Prepare PDF Report"):
+    with st.spinner("Generating..."):
+        cases, recoveries, prevalence, risk = get_kpi_metrics(df_filtered)
+        kpi_list = [("Cases", cases), ("Risk", risk)] # etc...
+        charts_to_export = {"Trend": plot_trend_chart(df_filtered)}
+        
+        # 2. Pass them INTO the function here:
+        pdf_bytes = generate_malaria_pdf(df_filtered, kpi_list, charts_to_export)
+        
+        st.download_button("Download", data=pdf_bytes, file_name="report.pdf")
+        """
