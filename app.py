@@ -133,7 +133,7 @@ if st.sidebar.button("🛠️ Generate Final Report"):
         try:
             final_pdf = generate_malaria_pdf(df_filtered, kpi_data, chart_dict)
             
-            # 4. Display download button
+            # 4. To Display download button after compiling.
             st.sidebar.success("✅ Report Ready!")
             st.sidebar.download_button(
                 label="📥 Download PDF",
