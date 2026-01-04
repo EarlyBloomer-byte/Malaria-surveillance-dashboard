@@ -5,9 +5,9 @@ import os
 
 class MalariaPDF(FPDF):
     def header(self):
-        # Logo - Look for a file named 'logo.png' in your folder
-        if os.path.exists("logo.png"):
-            self.image("logo.png", 10, 8, 25)
+        # Logo -  for a file named 'logo.pn
+        if os.path.exists("Logo.png"):
+            self.image("Logo.png", 10, 8, 25)
         
         self.set_font("helvetica", "B", 20)
         self.set_text_color(0, 102, 204) # Professional Blue
