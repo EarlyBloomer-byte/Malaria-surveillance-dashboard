@@ -5,7 +5,7 @@ import os
 
 class MalariaPDF(FPDF):
     def header(self):
-        # Logo -  for a file named 'logo.pn
+        # Logo
         if os.path.exists("Logo.png"):
             self.image("Logo.png", 10, 8, 25)
         
