@@ -62,6 +62,6 @@ def generate_malaria_pdf(df, kpis, charts):
             pdf.set_font("helvetica", "I", 8)
             pdf.cell(0, 10, f"Note: Chart {title} could not be rendered in PDF.", ln=True)
 
-    # Explicitly convert bytearray to bytes
+    # so I can forcefully convert bytearray to bytes
     pdf_output = pdf.output()
     return bytes(pdf_output)
