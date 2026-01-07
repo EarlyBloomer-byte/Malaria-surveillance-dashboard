@@ -144,3 +144,6 @@ if st.sidebar.button("🛠️ Generate Final Report"):
             )
         except Exception as e:
             st.sidebar.error(f"Error generating report: {e}")
+
+if "messages" not in st.session_state:
+    st.session_state.messages = []
