@@ -1,9 +1,9 @@
 # app.py
 import streamlit as st
-from data_manager import generate_dummy_data, get_kpi_metrics, fetch_malaria_news
-from visuals import plot_trend_chart, plot_map, plot_donut_chart, plot_animated_map, plot_animated_bar_race
-from report_generator import generate_malaria_pdf
-from AI_assistant import setup_ai, get_ai_response
+from Malaria.data_manager import generate_dummy_data, get_kpi_metrics, fetch_malaria_news
+from Malaria.visuals import plot_trend_chart, plot_map, plot_donut_chart, plot_animated_map, plot_animated_bar_race
+from Malaria.report_generator import generate_malaria_pdf
+from Malaria.AI_assistant import setup_ai, get_ai_response
 
 # --- Page Configuration ---
 st.set_page_config(page_title="Malaria Surveillance & Monitoring Dashboard", page_icon="🦟", layout="wide")
