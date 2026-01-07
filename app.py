@@ -38,14 +38,15 @@ st.title("🦟 Malaria Surveillance & Intelligence Portal")
 st.caption(f"Showing data for: **{selected_region} Region** | Year: **{selected_year}**")
 
 # --- 3. Dashboard Tabs ---
-tab_overview, tab_analytics, tab_animations, tab_news = st.tabs([
+tab_overview, tab_analytics, tab_animations, tab_news, tab_ai = st.tabs([
     "📍 Surveillance Overview", 
     "📊 Trends & Analytics",
     "📽️ Time-Lapse", 
-    "📰 Intelligence & News"
+    "📰 Intelligence & News",
+    "🐕‍🦺AI Assistant"
 ])
 
-# --- TAB 1: OVERVIEW ---
+# TAB 1: OVERVIEW
 with tab_overview:
     # KPI Row
     cases, recoveries, prevalence, risk = get_kpi_metrics(df_filtered)
@@ -66,7 +67,7 @@ with tab_overview:
         st.subheader("Outcome Split")
         st.plotly_chart(plot_donut_chart(df_filtered), use_container_width=True)
 
-# --- TAB 2: ANALYTICS ---
+# TAB 2: ANALYTICS
 with tab_analytics:
     st.subheader("Incidence Trends")
     st.plotly_chart(plot_trend_chart(df_filtered), use_container_width=True)
@@ -76,7 +77,7 @@ with tab_analytics:
     pivot = df_filtered.pivot_table(index='Region', values=['Cases', 'Deaths'], aggfunc='sum')
     st.dataframe(pivot, use_container_width=True)
 
-# --- TAB 4: NEWS & UPDATES ---
+# TAB 3: NEWS & UPDATES
 with tab_news:
     st.subheader("Latest Field Reports & Global Health News")
     news_data = fetch_malaria_news(selected_region)
@@ -95,7 +96,7 @@ if not news_data:
     st.info(f"No specific recent updates found for the {selected_region} region.")
 
 
-# --- TAB 3: ANIMATIONS ---
+# TAB 4: ANIMATIONS
 with tab_animations:
     st.subheader("Temporal Disease Dynamics")
     st.markdown("Press **Play** to visualize how malaria cases spread and shift over the year.")
@@ -147,3 +148,5 @@ if st.sidebar.button("🛠️ Generate Final Report"):
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
+
+# TAB 5: AI Assitant
