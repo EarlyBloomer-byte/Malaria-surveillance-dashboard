@@ -43,7 +43,7 @@ tab_overview, tab_analytics, tab_animations, tab_news, tab_ai = st.tabs([
     "📊 Trends & Analytics",
     "📽️ Time-Lapse", 
     "📰 Intelligence & News",
-    "🐕‍🦺AI Assistant"
+    "🤖 AI Assistant"
 ])
 
 # TAB 1: OVERVIEW
@@ -150,3 +150,32 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 # TAB 5: AI Assitant
+
+with tab_ai:
+    st.header("🤖 Malaria Expert AI")
+    st.info("Ask me about the current data or WHO malaria protocols.")
+
+    # Display chat history from session state
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
+
+    # Chat Input
+    if prompt := st.chat_input("Ex: What should we do about the case spike in the North?"):
+        # Display user message
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        with st.chat_message("user"):
+            st.markdown(prompt)
+
+        # Generate AI Context from my dashboard variables
+        cases, _, _, risk = get_kpi_metrics(df_filtered) # Get current metrics
+        context = f"Region: {selected_region}, Total Cases: {cases}, Risk Level: {risk}"
+
+        # Get AI Response
+        with st.chat_message("assistant"):
+            with st.spinner("Thinking..."):
+                model = setup_ai("YOUR_GEMINI_API_KEY_HERE") 
+                response = get_ai_response(model, prompt, context)
+                st.markdown(response)
+        
+        st.session_state.messages.append({"role": "assistant", "content": response})
