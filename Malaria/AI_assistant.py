@@ -4,7 +4,7 @@ import streamlit as st
 def setup_ai(api_key):
     genai.configure(api_key=api_key)
     # I will be using 'flash' for speed, 'pro' for deeper reasoning
-    return genai.GenerativeModel('gemini-1.5-pro')
+    return genai.GenerativeModel('gemini-3-flash-preview')
 
 def get_ai_response(model, user_query, dashboard_context):
     """
