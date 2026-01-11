@@ -152,7 +152,7 @@ if "messages" not in st.session_state:
 # TAB 5: AI Assitant
 
 with tab_ai:
-    st.header("🤖 Malaria Expert AI")
+    st.header("🤖 Malaria Expert Assistant")
     st.info("Ask me about the current data or WHO malaria protocols.")
 
     # Display chat history from session state
@@ -161,7 +161,7 @@ with tab_ai:
             st.markdown(message["content"])
 
     # Chat Input
-    if prompt := st.chat_input("Ex: What should we do about the case spike in the North?"):
+    if prompt := st.chat_input("Ex: What can we do about the case spike in the North?"):
         # Display user message
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
