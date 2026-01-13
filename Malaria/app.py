@@ -174,7 +174,7 @@ with tab_ai:
         # Get AI Response
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
-                model = setup_ai("") 
+                model = setup_ai("")
                 response = get_ai_response(model, prompt, context)
                 st.markdown(response)
         
