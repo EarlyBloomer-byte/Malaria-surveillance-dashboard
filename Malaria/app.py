@@ -161,7 +161,7 @@ with tab_ai:
             st.markdown(message["content"])
 
     # Chat Input
-    if prompt := st.chat_input("Ex: What can we do about the case spike in the North?"):
+    if prompt := st.chat_input("Ex: What can we do about the case spike in the South ?"):
         # Display user message
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
